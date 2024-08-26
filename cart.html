@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrendyCart 🛒</title>
+    <link rel="icon" href="image.png">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Cart Details</h1>
+    <div id="cartItems" class="mt-4"></div>
+    <button class="btn btn-primary mt-3" onclick="checkout()">Proceed to Checkout ✅</button>
+    <button class="btn btn-secondary mt-3" onclick="goBack()">Go Back to Shopping 🛍️</button>
+</div>
+
+<script>
+    const cart = JSON.parse(localStorage.getItem('cart')) || {};
+
+    function displayCart() {
+        const cartItemsContainer = document.getElementById('cartItems');
+        cartItemsContainer.innerHTML = '';
+
+        if (Object.keys(cart).length === 0) {
+            cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+        } else {
+            Object.keys(cart).forEach(product => {
+                const item = cart[product];
+                cartItemsContainer.innerHTML += `
+                    <div class="border p-2 mb-2">
+                        <h5>${product}</h5>
+                        <p>Price: $${item.price}</p>
+                        <p>Quantity: <button class="btn btn-sm btn-danger" onclick="updateQuantity('${product}', -1)">-</button> 
+                        <span id="quantity-${product.replace(/\s+/g, '')}">${item.quantity}</span> 
+                        <button class="btn btn-sm btn-success" onclick="updateQuantity('${product}', 1)">+</button></p>
+                    </div>
+                `;
+            });
+        }
+    }
+
+    function updateQuantity(product, change) {
+        if (cart[product]) {
+            cart[product].quantity += change;
+
+            // Remove the item if quantity is zero
+            if (cart[product].quantity <= 0) {
+                delete cart[product];
+            }
+
+            // Update the local storage and display the cart again
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+    }
+
+    function checkout() {
+        window.location.href = 'confirmation.html';
+    }
+
+    function goBack() {
+        window.location.href = 'index.html';
+    }
+
+    // Call displayCart when the page loads
+    window.onload = displayCart;
+</script>
+</body>
+</html>

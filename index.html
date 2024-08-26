@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrendyCart  🛒</title>
+    <link rel="icon" href="image.png">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap" rel="stylesheet">
+    <style>
+        /* Existing styles */
+
+        #splashScreen h1 {
+            font-family: "Merienda", cursive;
+        }
+
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        #splashScreen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            background-color: lavender;
+            transition: opacity 1s ease-out;
+            position: fixed; /* Fix splash screen on top */
+            width: 100%; /* Full width */
+            z-index: 999; /* Ensure splash screen is above everything */
+        }
+        #splashScreen img {
+            width: 150px;
+            height: auto;
+        }
+        #mainContent {
+            display: none; /* Hide main content until splash screen disappears */
+            padding: 20px;
+            overflow-y: auto; /* Enable vertical scrolling */
+            max-height: 100vh; /* Max height for scrolling */
+        }
+        .product-item {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+        .product-image {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Splash Screen -->
+<div id="splashScreen">
+    <div>
+        <img src="logo.png" alt="TrendyCart Logo">
+        <h1 class="text-center">TrendyCart 🛍️🛒</h1>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div id="mainContent">
+    <div class="container">
+        <div class="row">
+            <!-- Product 1 -->
+            <div class="col-md-6 product-item">
+                <img src="product1.jpeg" class="product-image" alt="Sony Rx10m3 Camera">
+                <h1>Sony Rx10m3 Camera</h1>
+                <p>$1,399.99</p>
+                <p>The Sony RX100 III is a compact digital camera known for its excellent image quality and portability.</p>
+                <button class="btn btn-success btn-add-to-cart" onclick="addToCart('Sony Rx10m3 Camera', 1399.99)">Add to Cart</button>
+                <button class="btn btn-primary btn-buy-now" onclick="buyNow('Sony Rx10m3 Camera', 1399.99)">Buy Now</button>
+                <p>Items in Cart: <span id="cartCountSonyRx10m3Camera" class="cart-count">0</span></p>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="col-md-6 product-item">
+                <img src="product4.jpeg" class="product-image" alt="DELL latitude 3550 laptop">
+                <h1>DELL latitude 3550 laptop</h1>
+                <p>$639.99</p>
+                <p>The Dell Latitude 3550 is a reliable business laptop designed for productivity.</p>
+                <button class="btn btn-success btn-add-to-cart" onclick="addToCart('DELL latitude 3550 laptop', 639.99)">Add to Cart</button>
+                <button class="btn btn-primary btn-buy-now" onclick="buyNow('DELL latitude 3550 laptop', 639.99)">Buy Now</button>
+                <p>Items in Cart: <span id="cartCountDELLlatitude3550laptop" class="cart-count">0</span></p>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="col-md-6 product-item">
+                <img src="product7.jpeg" class="product-image" alt="Samsung Galaxy Z flip 6">
+                <h1>Samsung Galaxy Z flip 6</h1>
+                <p>$1,099.00</p>
+                <p>The Samsung Galaxy Z Flip 6 is a cutting-edge foldable smartphone that combines style and functionality.</p>
+                <button class="btn btn-success btn-add-to-cart" onclick="addToCart('Samsung Galaxy Z flip 6', 1099.00)">Add to Cart</button>
+                <button class="btn btn-primary btn-buy-now" onclick="buyNow('Samsung Galaxy Z flip 6', 1099.00)">Buy Now</button>
+                <p>Items in Cart: <span id="cartCountSamsungGalaxyZflip6" class="cart-count">0</span></p>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="col-md-6 product-item">
+                <img src="product10.jpeg" class="product-image" alt="Fire-Boltt Phoenix Smart Watch">
+                <h1>Fire-Boltt Phoenix Smart Watch with Bluetooth Calling</h1>
+                <p>$2,000.00</p>
+                <p>The Fire-Boltt Phoenix Smart Watch is a feature-packed wearable that offers fitness tracking and Bluetooth calling.</p>
+                <button class="btn btn-success btn-add-to-cart" onclick="addToCart('Fire-Boltt Phoenix Smart Watch', 2000)">Add to Cart</button>
+                <button class="btn btn-primary btn-buy-now" onclick="buyNow('Fire-Boltt Phoenix Smart Watch', 2000)">Buy Now</button>
+                <p>Items in Cart: <span id="cartCountFireBolttPhoenixSmartWatch" class="cart-count">0</span></p>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="col-md-6 product-item">
+                <img src="product12.jpeg" class="product-image" alt="Philips Wireless on-ear Headphones">
+                <h1>Philips Wireless on-ear Headphones</h1>
+                <p>$8,299.00</p>
+                <p>Philips Wireless On Ear Headphones TAH8506BK, Sleek Design with Noise Cancellation Pro, Up to 60 Hrs of Play time, Touch Control (Black).</p>
+                <button class="btn btn-success btn-add-to-cart" onclick="addToCart('Philips Wireless onear Headphones', 8299)">Add to Cart</button>
+                <button class="btn btn-primary btn-buy-now" onclick="buyNow('Philips Wireless onear Headphones', 8299)">Buy Now</button>
+                <p>Items in Cart: <span id="cartCountPhilipsWirelessonearHeadphones" class="cart-count">0</span></p>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="col-md-6 product-item">
+                <img src="product14.jpg" class="product-image" alt="Boat Airdrops 311 pro">
+                <h1>Boat Airdrops 311 pro</h1>
+                <p>$3,299.00</p>
+                <p>boAt Airdopes 311 Pro Truly Wireless in Ear Ear Buds w/ Up to 50 HRS Playtime, Dual Mics with ENx™ Tech, 50 ms Low-Latency Beast™ Mode, ASAP™ Charging, IWP™ Tech (Dusk Blue).</p>
+                <button class="btn btn-success btn-add-to-cart" onclick="addToCart('Boat Airdrops 311 pro', 3299)">Add to Cart</button>
+                <button class="btn btn-primary btn-buy-now" onclick="buyNow('Boat Airdrops 311 pro', 3299)">Buy Now</button>
+                <p>Items in Cart: <span id="cartCountBoatAirdrops311pro" class="cart-count">0</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Splash Screen Logic
+    window.onload = function() {
+        const splashScreen = document.getElementById('splashScreen');
+        const mainContent = document.getElementById('mainContent');
+        splashScreen.style.opacity ='3';
+        setTimeout(() => {
+            splashScreen.style.display = 'none';
+            mainContent.style.display = 'block';
+        }, 3000); // Duration for splash screen 
+    };
+
+    // Cart Management
+const cart = JSON.parse(localStorage.getItem('cart')) || {};
+
+function addToCart(product, price) {
+    if (!cart[product]) {
+        cart[product] = { price: price, quantity: 1 };
+    } else {
+        cart[product].quantity++;
+    }
+    updateCartCount(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(product + " has been added to the cart.");
+}
+
+function updateCartCount(product) {
+    const countElement = document.getElementById('cartCount' + product.replace(/\s+/g, '') );
+    if (countElement) {
+        countElement.innerText = cart[product].quantity;
+    }
+}
+
+function buyNow(product, price) {
+    addToCart(product, price); // Add to cart before redirecting
+    window.location.href = 'cart.html'; // Redirect to the cart page
+}
+
+</script>
+</body>
+</html>
+
